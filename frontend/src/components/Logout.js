@@ -10,7 +10,6 @@ const Logout = (props) => {
             .then(res => {
                 localStorage.removeItem('token');
                 localStorage.removeItem('role');
-                localStorage.removeItem('username');
                 push('/login');
             })
     },[])
