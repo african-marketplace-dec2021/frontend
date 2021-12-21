@@ -28,6 +28,7 @@ const Login = () => {
         //         localStorage.setItem("token", token);
         //         localStorage.setItem("role", role);
         //         localStorage.setItem("username", username);
+        //         push('/listings')
         //     })
         //     .catch(err => {
         //         console.error(err);
