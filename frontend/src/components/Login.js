@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 
+
 const Login = () => {
     const { push } = useHistory();
 
@@ -55,7 +56,7 @@ const Login = () => {
                             onChange={handleChange}
                             placeholder="Enter a password"
                         />
-                        <button>Log in</button>
+                        <button id='login'>Log in</button>
             </form>
         </div>
     );
