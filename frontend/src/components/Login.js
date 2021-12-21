@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 
 const Login = () => {
@@ -58,6 +58,7 @@ const Login = () => {
                         />
                         <button id='login'>Log in</button>
             </form>
+            <p>New Seller?</p> <Link to='/createuser'> Create a new account</Link>
         </div>
     );
 };
