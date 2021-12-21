@@ -1,17 +1,11 @@
 import React, { useEffect } from 'react';
-import { useHistory } from "react-router-dom";
-import axiosWithAuth from "../utils/axiosWithAuth";
 
-const Logout = (props) => {
-    const { push } = useHistory();
+const Logout = () => {
 
     useEffect(() => {
-        axiosWithAuth().post("NO URL NOT SURE IF I NEED ONE")
-            .then(res => {
-                localStorage.removeItem('token');
-                localStorage.removeItem('role');
-                push('/login');
-            })
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        window.location.href='/login';
     },[])
     return (<div></div>);
 };

@@ -16,6 +16,8 @@ You will build a platform to enable these business owners to create listings for
 
 (https://www.notion.so/African-Marketplace-a449bf95188440b29436334e870c8f3e)
 
+## Vercel Deployment
+https://african-marketplace-3-frontend-jpzl1n8td-bugsbrog.vercel.app/
 
 ## Heroku API
 Deployed URL: https://african-marketplace-dec-2021.herokuapp.com/

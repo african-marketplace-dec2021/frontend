@@ -66,14 +66,12 @@ function App() {
 
 
 
-    <Switch>
-      <Route path = '/newlisting' component={NewListing} />
+      <PrivateRoute path = '/newlisting' component={NewListing} />
       <Route path = '/createuser' component={CreateUser} />
       <Route path = '/login' component={Login} />
       <PrivateRoute path = '/logout' component={Logout} />
-      <PrivateRoute exact path = '/listings' component={Listings} />
-      <Route path = '/' component={Home} />
-    </Switch>
+      <PrivateRoute path = '/listings' component={Listings} />
+      <Route exact path = '/' component={Home} />
 
     </StyledApp>
   );

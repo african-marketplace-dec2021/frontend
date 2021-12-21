@@ -4,7 +4,6 @@ import { useHistory, Link } from "react-router-dom";
 
 
 const Login = () => {
-    const { push } = useHistory();
 
     const [user, setUser] = useState({
         credentials: {
@@ -30,7 +29,7 @@ const Login = () => {
                 const { token, role } = res.data;
                 localStorage.setItem("token", token);
                 localStorage.setItem("role", role);
-                push('/listings')
+                window.location.href='/listings'
             })
             .catch(err => {
                 console.error(err);
