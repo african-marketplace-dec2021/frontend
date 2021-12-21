@@ -28,7 +28,7 @@ const StyledApp = styled.div`
     color: #F7DC6F;
     font-family: Fantasy;
     border-color: #145A32;
-    padding: 6%;
+    /* padding: 6%; */
     width: 7rem;
     margin-left: 10px;
     font-weight: bold;
@@ -36,6 +36,10 @@ const StyledApp = styled.div`
     &:hover {
       transform: scale(1.1);
     }
+  }
+
+  #registerButton{
+    /* width: 1rem; */
   }
 
   #login {
