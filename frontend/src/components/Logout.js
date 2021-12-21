@@ -6,7 +6,7 @@ const Logout = (props) => {
     const { push } = useHistory();
 
     useEffect(() => {
-        axiosWithAuth().post("NO URL YET")
+        axiosWithAuth().post("")
             .then(res => {
                 localStorage.removeItem('token');
                 localStorage.removeItem('role');
