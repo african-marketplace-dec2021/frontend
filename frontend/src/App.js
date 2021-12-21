@@ -67,6 +67,7 @@ function App() {
 
 
     <Switch>
+      <Route path = '/newlisting' component={NewListing} />
       <Route path = '/createuser' component={CreateUser} />
       <Route path = '/login' component={Login} />
       <PrivateRoute path = '/logout' component={Logout} />
