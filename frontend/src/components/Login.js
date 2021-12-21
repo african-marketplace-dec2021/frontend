@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
+
 
 const Login = () => {
+    const { push } = useHistory();
 
     const [user, setUser] = useState({
         credentials: {
@@ -22,17 +25,17 @@ const Login = () => {
 
     const handleLogin = evt => {
         evt.preventDefault();
-        // axios.post(NO URL YET, user.credentials)
-        //     .then(res => {
-        //         const { token, role, username } = res.data;
-        //         localStorage.setItem("token", token);
-        //         localStorage.setItem("role", role);
-        //         localStorage.setItem("username", username);
-        //         push('/listings')
-        //     })
-        //     .catch(err => {
-        //         console.error(err);
-        //     })
+        axios.post('https://african-marketplace-dec-2021.herokuapp.com/api/auth/login', user.credentials)
+            .then(res => {
+                const { token, role, username } = res.data;
+                localStorage.setItem("token", token);
+                localStorage.setItem("role", role);
+                localStorage.setItem("username", username);
+                push('/listings')
+            })
+            .catch(err => {
+                console.error(err);
+            })
         };
     return (
         <div>
@@ -53,7 +56,7 @@ const Login = () => {
                             onChange={handleChange}
                             placeholder="Enter a password"
                         />
-                        <button>Log in</button>
+                        <button id='login'>Log in</button>
             </form>
         </div>
     );
