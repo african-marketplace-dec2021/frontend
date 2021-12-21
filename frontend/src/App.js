@@ -1,14 +1,14 @@
 import './App.css';
 import React from 'react';
-import { Route, Switch, Link, useHistory } from "react-router-dom";
+import { Route, Switch, Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 //Components
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from './components/PrivateRoute';
 import Home from './components/Home';
 import Listings from './components/Listings';
 import Login from './components/Login';
-import Logout from "./components/Logout";
+import Logout from './components/Logout';
 
 const StyledApp = styled.div`
   background-color: #F7DC6F ;
