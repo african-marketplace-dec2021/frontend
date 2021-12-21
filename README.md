@@ -44,7 +44,6 @@ Each user object has the format:
 
 ## MEET EVERYONE!!
 
-![](../Downloads/Hannah copy.jpg)
 Hannah Brog
 Github: https://github.com/bugsbrog
 LinkedIn: https://www.linkedin.com/in/hannah-brog/
