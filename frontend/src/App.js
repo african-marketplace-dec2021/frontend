@@ -9,6 +9,8 @@ import Home from './components/Home';
 import Listings from './components/Listings';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import NewListing from './components/NewListing';
+import CreateUser from './components/CreateUser';
 
 const StyledApp = styled.div`
   background-color: #F7DC6F ;
@@ -65,6 +67,8 @@ function App() {
 
 
     <Switch>
+      <Route path = '/newlisting' component={NewListing} />
+      <Route path = '/createuser' component={CreateUser} />
       <Route path = '/login' component={Login} />
       <PrivateRoute path = '/logout' component={Logout} />
       <PrivateRoute exact path = '/listings' component={Listings} />
