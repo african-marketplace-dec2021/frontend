@@ -1,20 +1,25 @@
 import './App.css';
 import React from 'react';
+import { Route, Switch, Link, useHistory } from "react-router-dom";
+
+//Components
+import PrivateRoute from "./components/PrivateRoute";
 import Home from './components/Home';
 import Listings from './components/Listings';
 import Login from './components/Login';
-import { Route, Switch, Link, useHistory } from "react-router-dom";
-
+import Logout from "./components/Logout";
 
 function App() {
+  const isLoggedIn = localStorage.getItem("token")
   return (
     <div className='App'>
       <nav>
         <h1>African Marketplace</h1>
         <div className='nav-links'>
           <Link to='/'>Home</Link>
-          <Link to='/listings'>Listings</Link>
-          <Link to='/login'>Login page</Link>
+          {isLoggedIn && <Link to='/listings'>Listings</Link>}
+          {!isLoggedIn && <Link to='/login'>Login page</Link>}
+          {isLoggedIn && <Link to='/logout'>Logout page</Link>}
         </div>
       </nav>
 
@@ -23,12 +28,9 @@ function App() {
 
     <Switch>
       <Route path = '/login' component={Login} />
-      <Route path = '/listings'>
-        <Listings />
-      </Route>
-      <Route path = '/'>
-        <Home />
-      </Route>
+      <PrivateRoute path = '/logout' component={Logout} />
+      <PrivateRoute exact path = '/listings' component={Listings} />
+      <Route path = '/' component={Home} />
     </Switch>
 
     </div>
