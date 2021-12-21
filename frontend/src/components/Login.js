@@ -27,10 +27,9 @@ const Login = () => {
         evt.preventDefault();
         axios.post('https://african-marketplace-dec-2021.herokuapp.com/api/auth/login', user.credentials)
             .then(res => {
-                const { token, role, username } = res.data;
+                const { token, role } = res.data;
                 localStorage.setItem("token", token);
                 localStorage.setItem("role", role);
-                localStorage.setItem("username", username);
                 push('/listings')
             })
             .catch(err => {
