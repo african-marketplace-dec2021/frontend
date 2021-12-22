@@ -3,6 +3,7 @@ import { React, useState, useEffect } from "react";
 import FormSchema from "./FormSchema";
 import * as yup from "yup";
 
+
 const initialValues = {
   username: "",
   fullName: "",
@@ -35,7 +36,6 @@ const CreateUser = (props) => {
   const onChange = (event) => {
     const { name, value, checked, type } = event.target;
     const newVal = type === "checkbox" ? checked : value;
-    // setUser({...user, [name]: newVal})
     validate(name, newVal);
     updateForm(name, newVal);
   };
@@ -44,7 +44,7 @@ const CreateUser = (props) => {
     event.preventDefault();
     axios
       .post(
-        "https://african-marketplace-dec-2021.herokuapp.com/api/users",
+        "enter an api here",
         user
       )
       .then((res) => {
@@ -54,7 +54,6 @@ const CreateUser = (props) => {
   };
 
   const validate = (name, value) => {
-    // console.log(name, value)
     yup
       .reach(FormSchema, name)
       .validate(value)
@@ -71,8 +70,6 @@ const CreateUser = (props) => {
   return (
     <div className="form-container">
       <h2>Register</h2>
-      {/*Enter Validation errors here
-            as <p>{errors.username}</p> ETC. */}
       <form onSubmit={onSubmit}>
         <label>
           Full Name:
@@ -113,7 +110,7 @@ const CreateUser = (props) => {
             onChange={onChange}
           />
         </label>
-        {/*Todo: maybe change this to a dropdown*/}
+        
         <label>
           Role:
           <input
@@ -134,7 +131,7 @@ const CreateUser = (props) => {
           />
         </label>
 
-        <input type="submit" disabled={disabled} value="Register User" />
+        <button id='registerButton' disabled={disabled}>Register</button>
 
         <div id="errors">
             {formErrors.fullName}
@@ -144,58 +141,9 @@ const CreateUser = (props) => {
             {formErrors.role}
             {formErrors.tos}
         </div>
-
-        {/*<button id='registerButton'>Submit</button>*/}
       </form>
     </div>
   );
 };
-
-// const ImplementCreateUser = () => {
-//     const[formValues, setFormValues] = useState(initVals);
-//     const [formErrors, setFormErrors] = useState(initErrors);
-//     const [users, setUsers] = useState([]);
-
-//     const handleSubmit = () => {
-//         axios.post('https://african-marketplace-dec-2021.herokuapp.com/api/auth/register', formValues)
-//         .then(r => {
-//           setUsers([r.data, ...users])
-//         })
-//         .catch(err => console.error(err))
-//         .finally(()=> setFormValues(initVals))
-//       }
-
-//       const validate = (name, value) => {
-//         yup.reach(schema, name)
-//         .validate(value)
-//         .then(() => setFormErrors({...formErrors, [name]: ''}))
-//         .catch(err => setFormErrors({...formErrors, [name]: err.errors[0] }))
-//       }
-
-//       const handleChange = (name, value) => {
-//         validate(name, value);
-//         setFormValues({...formValues, [name]: value})
-//       }
-
-//     return (
-//         <div className='implement-form'>
-//             <CreateUser
-//             values={formValues}
-//             change={handleChange}
-//             errors={formErrors}
-//             submit={handleSubmit}
-//             />
-
-//             {users.map(user => (
-//             <div key={user.id}>
-//             {console.log(user)}
-//             <p>{user.createdAt}</p>
-//             <p>{user.username}</p>
-//             <p>{user.email}</p>
-//             </div>
-//     ))}
-//         </div>
-//     );
-// }
 
 export default CreateUser;

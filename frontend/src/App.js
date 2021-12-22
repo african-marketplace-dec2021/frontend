@@ -17,6 +17,7 @@ const StyledApp = styled.div`
   color: #145A32;
   font-family: Papyrus, Fantasy; 
   font-weight: bold; 
+  margin-top: 1%;
 
   h1 {
     font-size: 4rem;
@@ -38,12 +39,8 @@ const StyledApp = styled.div`
     }
   }
 
-  #registerButton{
-    /* width: 1rem; */
-  }
-
   #login {
-    padding: 1%;
+    /* padding: 1%; */
   }
   
   .nav-links{

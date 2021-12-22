@@ -38,7 +38,7 @@ const Login = () => {
     return (
         <div>
             <form onSubmit={handleLogin}>
-                <label>Username:</label>
+                <label>Username: </label>
                     <input
                         type="text"
                         name="username"
@@ -46,7 +46,7 @@ const Login = () => {
                         onChange={handleChange}
                         placeholder="Enter a username"
                     />
-                    <label>Password</label>
+                    <label>Password: </label>
                         <input
                             type="password"
                             name="password"
@@ -56,7 +56,8 @@ const Login = () => {
                         />
                         <button id='login'>Log in</button>
             </form>
-            <p>New Seller?</p> <Link to='/createuser'> Create a new account</Link>
+            <h2>New Seller?</h2> 
+            <Link to='/createuser'><button>Create a new account</button></Link>
         </div>
     );
 };
