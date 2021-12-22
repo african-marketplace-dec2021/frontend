@@ -15,8 +15,9 @@ import CreateUser from './components/CreateUser';
 const StyledApp = styled.div`
   background-color: #F7DC6F ;
   color: #145A32;
-  font-family: Fantasy; 
+  font-family: Papyrus, Fantasy; 
   font-weight: bold; 
+  margin-top: 1%;
 
   h1 {
     font-size: 4rem;
@@ -26,7 +27,7 @@ const StyledApp = styled.div`
     background-color: #C0392B;
     border-radius: 10px;
     color: #F7DC6F;
-    font-family: Fantasy;
+    font-family: Papyrus, Fantasy;
     border-color: #145A32;
     /* padding: 6%; */
     width: 7rem;
@@ -38,12 +39,8 @@ const StyledApp = styled.div`
     }
   }
 
-  #registerButton{
-    /* width: 1rem; */
-  }
-
   #login {
-    padding: 1%;
+    /* padding: 1%; */
   }
   
   .nav-links{
