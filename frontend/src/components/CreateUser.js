@@ -1,5 +1,28 @@
-import React from "react";
-//import FormSchema from './FormSchema';
+import React, {useState} from 'react';
+import axios from 'axios';
+
+import * as yup from 'yup';
+import schema from './FormSchema';
+
+
+const initVals = {
+    fullName: '',
+    username: '',
+    password: '',
+    email: '',
+    role: '', 
+    tos: false
+  }
+  
+  const initErrors = {
+    fullName: '',
+    username: '',
+    password: '',
+    email: '',
+    role: '', 
+    tos: ''
+  }
+
 
 const CreateUser = (props) => {
     const {change, submit, errors} = props;
@@ -67,10 +90,10 @@ const CreateUser = (props) => {
                     
                 />
             </label>
-
-            <label>Role:
+            {/*Todo: maybe change this to a dropdown*/}
+            <label>Role: 
                 <input
-                type='text'
+                type='text' 
                 name='role'
                 value={role}
                 onChange={onChange}
@@ -95,7 +118,56 @@ const CreateUser = (props) => {
             {/*<button id='registerButton'>Submit</button>*/}
             </form>
         </div>
-    )
+    );
 }
 
+const ImplementCreateUser = () => {
+    const[formValues, setFormValues] = useState(initVals);
+    const [formErrors, setFormErrors] = useState(initErrors);
+    const [users, setUsers] = useState([]);
+
+    const handleSubmit = () => {
+        axios.post('https://african-marketplace-dec-2021.herokuapp.com/api/auth/users', formValues)
+        .then(r => {
+          setUsers([r.data, ...users])
+        })
+        .catch(err => console.error(err))
+        .finally(()=> setFormValues(initVals))
+      }
+
+      const validate = (name, value) => {
+        yup.reach(schema, name)
+        .validate(value)
+        .then(() => setFormErrors({...formErrors, [name]: ''}))
+        .catch(err => setFormErrors({...formErrors, [name]: err.errors[0] }))
+      }
+    
+      const handleChange = (name, value) => {
+        validate(name, value);
+        setFormValues({...formValues, [name]: value})
+      }
+
+    return (
+        <div className='implement-form'>
+            <CreateUser 
+            values={formValues} 
+            change={handleChange} 
+            errors={formErrors} 
+            submit={handleSubmit}
+            />
+
+            {users.map(user => (
+            <div key={user.id}>
+            {console.log(user)}
+            <p>{user.createdAt}</p>
+            <p>{user.username}</p>
+            <p>{user.email}</p>
+            </div>
+    ))}
+        </div>
+    );
+}
+
+ 
+export {ImplementCreateUser}
 export default CreateUser;
