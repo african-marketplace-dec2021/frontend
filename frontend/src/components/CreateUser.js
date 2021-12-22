@@ -24,7 +24,7 @@ const CreateUser = (props) => {
             as <p>{errors.username}</p> ETC. */}
         <form  onSubmit={onSubmit}>
         
-        <label>Username:
+        <label>Full Name:
                 <input
                 type='text'
                 name='fullName'
