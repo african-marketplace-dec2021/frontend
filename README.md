@@ -53,3 +53,7 @@ LinkedIn: https://www.linkedin.com/in/hannah-brog/
 Tim Goloshchapov
 Github: https://github.com/Timbobeek
 LinkedIn: https://www.linkedin.com/in/timofey-goloshchapov-b25660179/
+
+Allison Stewart
+Github: https://github.com/am-stewart
+LinkedIn: https://www.linkedin.com/in/am-stewart/
