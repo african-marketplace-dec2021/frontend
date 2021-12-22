@@ -1,40 +1,100 @@
 import React from "react";
-import FormSchema from './FormSchema';
+//import FormSchema from './FormSchema';
 
-function CreateUser () {
+const CreateUser = (props) => {
+    const {change, submit, errors} = props;
+    const {username, fullName, email, password, role, tos} = props.values;
+
+    const onChange = (event) => {
+        const {name, value, checked, type} = event.target
+        const newVal = type === 'checkbox' ?
+        checked : value;
+        change(name, newVal);
+    }
+
+    const onSubmit = (event) => {
+        event.preventDefault();
+        submit();
+    }
+
     return (
-        <form className='form container'>
-            {/* dont forget submit button */}
-            <h2> Register a new user!</h2>
-
-            <label>Username
+        <div className='form-container'>
+            <h2>Register</h2>
+            {/*Enter Validation errors here
+            as <p>{errors.username}</p> ETC. */}
+        <form  onSubmit={onSubmit}>
+        
+        <label>Username:
                 <input
-                //   value={values.username}
-                //   onChange={onChange}
-                  name='name'
-                  type='text'
+                type='text'
+                name='fullName'
+                value={fullName}
+                onChange={onChange}
+                  
+                  
+                />
+            </label>    
+
+            <label>Username:
+                <input
+                type='text'
+                name='name'
+                value={username}
+                onChange={onChange}
+                  
+                  
+                />
+            </label>
+
+            <label>Email:
+                <input
+                type='email'
+                name='email'
+                value={email}
+                onChange={onChange}
+                  
+                  
                 />
             </label>
 
             <label>Password:
                 <input
-                    // value={values.password}
-                    // onChange={onChange}
-                    name='password'
-                    type='password'
+                type='password'
+                name='password'
+                value={password}
+                onChange={onChange}
+                    
+                    
                 />
             </label>
 
             <label>Role:
                 <input
-                    // value={values.email}
-                    // onChange={onChange}
-                    name='username'
-                    type='text'
+                type='text'
+                name='role'
+                value={role}
+                onChange={onChange}
+                    
+                    
                 />
             </label>
-            <button id='registerButton'>Register</button>
-        </form>
+
+            <label>Terms of Service:
+                <input
+                type='checkbox'
+                name='tos'
+                checked={tos}
+                onChange={onChange}
+                    
+                    
+                />
+            </label>
+
+            <input type ='submit' value='Register User'/>
+    
+            {/*<button id='registerButton'>Submit</button>*/}
+
+        </div>
     )
 }
 
