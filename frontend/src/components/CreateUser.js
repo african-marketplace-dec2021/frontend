@@ -127,7 +127,7 @@ const ImplementCreateUser = () => {
     const [users, setUsers] = useState([]);
 
     const handleSubmit = () => {
-        axios.post('https://african-marketplace-dec-2021.herokuapp.com/api/auth/users', formValues)
+        axios.post('https://african-marketplace-dec-2021.herokuapp.com/api/auth/register', formValues)
         .then(r => {
           setUsers([r.data, ...users])
         })
