@@ -49,3 +49,7 @@ Each user object has the format:
 Hannah Brog
 Github: https://github.com/bugsbrog
 LinkedIn: https://www.linkedin.com/in/hannah-brog/
+
+Tim Goloshchapov
+Github:https://github.com/Timbobeek
+LinkedIn: https://www.linkedin.com/in/timofey-goloshchapov-b25660179/
