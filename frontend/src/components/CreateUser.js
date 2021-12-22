@@ -2,7 +2,17 @@ import axios from "axios";
 import { React, useState, useEffect } from "react";
 import FormSchema from "./FormSchema";
 import * as yup from "yup";
+import styled from "styled-components";
 
+const StyledRegister = styled.div`
+    display: flex;
+    align-content: center;
+    align-items:center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 1%;
+    margin-bottom: 2%;  
+`
 
 const initialValues = {
   username: "",

@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory, Link } from "react-router-dom";
+import styled from 'styled-components';
 
+const StyledStuff = styled.div`
+    display: flex;
+    align-content: center;
+    align-items:center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 1%;
+    margin-bottom: 2%;
+
+`
 
 const Login = () => {
 
@@ -38,6 +49,7 @@ const Login = () => {
     return (
         <div>
             <form onSubmit={handleLogin}>
+                <StyledStuff>
                 <label>Username: </label>
                     <input
                         type="text"
@@ -55,6 +67,7 @@ const Login = () => {
                             placeholder="Enter a password"
                         />
                         <button id='login'>Log in</button>
+                    </StyledStuff>
             </form>
             <h2>New Seller?</h2> 
             <Link to='/createuser'><button>Create a new account</button></Link>
