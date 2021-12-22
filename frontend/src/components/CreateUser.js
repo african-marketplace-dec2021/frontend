@@ -126,7 +126,7 @@ const CreateUser = (props) => {
           <input
             type="text"
             name="role"
-            value={users.role}
+            value={user.role}
             onChange={onChange}
           />
         </label>
@@ -136,12 +136,12 @@ const CreateUser = (props) => {
           <input
             type="checkbox"
             name="tos"
-            checked={users.tos}
+            checked={user.tos}
             onChange={onChange}
           />
         </label>
 
-        {/* <button id='registerButton' disabled={disabled}>Register</button> */}
+        <button id='registerButton' disabled={disabled}>Register</button>
 
         <div id="errors">
             {formErrors.fullName}
@@ -151,6 +151,7 @@ const CreateUser = (props) => {
             {formErrors.role}
             {formErrors.tos}
         </div>
+      </form>
     </div>
   );
 };
