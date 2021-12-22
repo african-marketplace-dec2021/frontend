@@ -57,3 +57,7 @@ LinkedIn: https://www.linkedin.com/in/timofey-goloshchapov-b25660179/
 Allison Stewart
 Github: https://github.com/am-stewart
 LinkedIn: https://www.linkedin.com/in/am-stewart/
+
+Andrew Bier
+Git: https://github.com/UrukuTelal
+LinkedIn: https://www.linkedin.com/in/andrew-o-bier/
