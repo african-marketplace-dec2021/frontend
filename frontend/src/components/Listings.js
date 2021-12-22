@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
-import './Login.css';
-
 import NewListing from '../components/NewListing';
 
 const StyledBox = styled.div`
@@ -29,6 +27,15 @@ const StyledTop = styled.div`
     border-bottom: 1px solid black;
 `
 
+const StyledListing = styled.div`
+    max-width: 1000px;
+    min-width: 300px;
+    width: 80vw;
+    margin: 50px auto;
+    background-color: #ffffff;
+    border-radius: 25px;
+`
+
 function Listings (){
 
     const [listings, setListings] = useState([
@@ -47,12 +54,12 @@ function Listings (){
   return (
     <div>
       <Link to='/newlisting'> Add new listing </Link>
-        <div className='listing-cont'>
+        <StyledListing>
         {
             listings.map(listing => {
                 return (
                     <StyledTop>
-                    <StyledBox key={listing.id} listing={listing}>
+                    <StyledBox listing={listing}>
                         <h1>{listing.name}</h1>
 
                         <h2>Item description:</h2>
@@ -67,7 +74,7 @@ function Listings (){
 
             )
         })}
-        </div>
+        </StyledListing>
   </div>
   )
 }
