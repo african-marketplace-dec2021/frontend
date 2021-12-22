@@ -10,6 +10,10 @@ const StyledBox = styled.div`
     margin-bottom: 1em;
 `
 
+const StyledHeader = styled.h2`
+    font-size: 1.9em;
+`
+
 const StyledPrice = styled.div`
     width: 15%;
     text-align: left;
@@ -59,8 +63,10 @@ function Listings (){
             listings.map(listing => {
                 return (
                     <StyledTop>
-                    <StyledBox listing={listing}>
-                        <h1>{listing.name}</h1>
+                    <StyledBox key={listing.id}>
+                        <StyledHeader>
+                            <h2>{listing.name}</h2>
+                        </StyledHeader>
 
                         <h2>Item description:</h2>
                         <h3>{listing.description}</h3>
@@ -68,7 +74,7 @@ function Listings (){
                     </StyledBox>
                     <StyledPrice>
                         <h3>Item price:</h3>
-                        <h4>{listing.price}</h4>
+                        <h4>${listing.price}</h4>
                     </StyledPrice>
                     </StyledTop>
 
