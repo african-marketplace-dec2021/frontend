@@ -28,7 +28,7 @@ const CreateUser = (props) => {
                 <input
                 type='text'
                 name='fullName'
-                value={fullName}
+                value={props.fullName}
                 onChange={onChange}
                   
                   
@@ -39,7 +39,7 @@ const CreateUser = (props) => {
                 <input
                 type='text'
                 name='name'
-                value={username}
+                value={props.username}
                 onChange={onChange}
                   
                   
@@ -50,7 +50,7 @@ const CreateUser = (props) => {
                 <input
                 type='email'
                 name='email'
-                value={email}
+                value={props.email}
                 onChange={onChange}
                   
                   
@@ -61,7 +61,7 @@ const CreateUser = (props) => {
                 <input
                 type='password'
                 name='password'
-                value={password}
+                value={props.password}
                 onChange={onChange}
                     
                     
@@ -72,7 +72,7 @@ const CreateUser = (props) => {
                 <input
                 type='text'
                 name='role'
-                value={role}
+                value={props.role}
                 onChange={onChange}
                     
                     
@@ -83,7 +83,7 @@ const CreateUser = (props) => {
                 <input
                 type='checkbox'
                 name='tos'
-                checked={tos}
+                checked={props.tos}
                 onChange={onChange}
                     
                     
