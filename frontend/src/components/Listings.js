@@ -62,14 +62,14 @@ function Listings (){
         {
             listings.map(listing => {
                 return (
-                    <StyledTop>
-                    <StyledBox key={listing.id}>
+                    <StyledTop key={listing.id}>
+                    <StyledBox listing={listing}>
                         <StyledHeader>
-                            <h2>{listing.name}</h2>
+                            {listing.name}
                         </StyledHeader>
 
-                        <h2>Item description:</h2>
-                        <h3>{listing.description}</h3>
+                        <h3>Item description:</h3>
+                        <h4>{listing.description}</h4>
 
                     </StyledBox>
                     <StyledPrice>
