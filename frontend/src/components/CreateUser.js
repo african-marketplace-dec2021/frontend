@@ -61,7 +61,7 @@ const CreateUser = (props) => {
             <label>Username:
                 <input
                 type='text'
-                name='name'
+                name='username'
                 value={username}
                 onChange={onChange}
                   
@@ -169,5 +169,5 @@ const ImplementCreateUser = () => {
 }
 
  
-export {ImplementCreateUser}
-export default CreateUser;
+export default ImplementCreateUser;
+// export default CreateUser;
