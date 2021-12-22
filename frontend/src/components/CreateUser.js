@@ -122,82 +122,70 @@ const CreateUser = (props) => {
         </label>
         
         <label>Full Name:
-                <input
-                type='text'
-                name='fullName'
-                value={fullName}
-                onChange={onChange}
-                  
-                  
-                />
-            </label>    
+          <input
+            type='text'
+            name='fullName'
+            value={user.fullName}
+            onChange={onChange}
+          />
+        </label>    
 
-            <label>Username:
-                <input
-                type='text'
-                name='username'
-                value={username}
-                onChange={onChange}
-                  
-                  
-                />
-            </label>
+        <label>Username:
+          <input
+            type='text'
+            name='username'
+            value={user.username}
+            onChange={onChange} 
+          />
+        </label>
 
-            <label>Email:
-                <input
-                type='email'
-                name='email'
-                value={email}
-                onChange={onChange}
-                  
-                  
-                />
-            </label>
+        <label>Email:
+          <input
+            type='email'
+            name='email'
+            value={user.email}
+            onChange={onChange}
+          />
+        </label>
 
-            <label>Password:
-                <input
-                type='password'
-                name='password'
-                value={password}
-                onChange={onChange}
-                    
-                    
-                />
-            </label>
+        <label>Password:
+          <input
+            type='password'
+            name='password'
+            value={user.password}
+            onChange={onChange}
+          />
+        </label>
             {/*Todo: maybe change this to a dropdown*/}
-            <label>Role: 
-                <input
-                type='text' 
-                name='role'
-                value={role}
-                onChange={onChange}
-                    
-                    
-                />
-            </label>
+        <label>Role: 
+          <input
+            type='text' 
+            name='role'
+            value={user.role}
+            onChange={onChange} 
+          />
+        </label>
 
-            <label>Terms of Service:
-                <input
-                type='checkbox'
-                name='tos'
-                checked={tos}
-                onChange={onChange}
-                    
-                    
-                />
-            </label>
+        <label>Terms of Service:
+          <input
+            type='checkbox'
+            name='tos'
+            checked={user.tos}
+            onChange={onChange}
+          />
+        </label>
 
-            <input type ='submit' value='Register User'/>
+          <input type ='submit' value='Register User'/>
     
             {/*<button id='registerButton'>Submit</button>*/}
-            </form>
-        </div>
+      </form>
+    </div>
     );
 }
 
 const ImplementCreateUser = () => {
-    const[formValues, setFormValues] = useState(initVals);
-    const [formErrors, setFormErrors] = useState(initErrors);
+    const[formValues, setFormValues] = useState(initialValues);
+    const [formErrors, setFormErrors] = useState(initialFormErrors);
     const [users, setUsers] = useState([]);
 
     const handleSubmit = () => {
@@ -206,11 +194,11 @@ const ImplementCreateUser = () => {
           setUsers([r.data, ...users])
         })
         .catch(err => console.error(err))
-        .finally(()=> setFormValues(initVals))
+        .finally(()=> setFormValues(initialValues))
       }
 
       const validate = (name, value) => {
-        yup.reach(schema, name)
+        yup.reach(FormSchema, name)
         .validate(value)
         .then(() => setFormErrors({...formErrors, [name]: ''}))
         .catch(err => setFormErrors({...formErrors, [name]: err.errors[0] }))
@@ -220,6 +208,17 @@ const ImplementCreateUser = () => {
         validate(name, value);
         setFormValues({...formValues, [name]: value})
       }
+
+      const updateForm = (inputName, inputValue) => {
+        setUsers({ ...users, [inputName]: inputValue });
+      };
+
+      const onChange = (event) => {
+        const { name, value, checked, type } = event.target;
+        const newVal = type === "checkbox" ? checked : value;
+        validate(name, newVal);
+        updateForm(name, newVal);
+      };
 
     return (
         <div className='implement-form'>
@@ -243,7 +242,7 @@ const ImplementCreateUser = () => {
           <input
             type="text"
             name="role"
-            value={user.role}
+            value={users.role}
             onChange={onChange}
           />
         </label>
@@ -253,12 +252,12 @@ const ImplementCreateUser = () => {
           <input
             type="checkbox"
             name="tos"
-            checked={user.tos}
+            checked={users.tos}
             onChange={onChange}
           />
         </label>
 
-        <button id='registerButton' disabled={disabled}>Register</button>
+        {/* <button id='registerButton' disabled={disabled}>Register</button> */}
 
         <div id="errors">
             {formErrors.fullName}
@@ -268,7 +267,6 @@ const ImplementCreateUser = () => {
             {formErrors.role}
             {formErrors.tos}
         </div>
-      </form>
     </div>
   );
 };
