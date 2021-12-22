@@ -15,7 +15,7 @@ import CreateUser from './components/CreateUser';
 const StyledApp = styled.div`
   background-color: #F7DC6F ;
   color: #145A32;
-  font-family: Fantasy; 
+  font-family: Papyrus, Fantasy; 
   font-weight: bold; 
 
   h1 {
@@ -26,7 +26,7 @@ const StyledApp = styled.div`
     background-color: #C0392B;
     border-radius: 10px;
     color: #F7DC6F;
-    font-family: Fantasy;
+    font-family: Papyrus, Fantasy;
     border-color: #145A32;
     /* padding: 6%; */
     width: 7rem;

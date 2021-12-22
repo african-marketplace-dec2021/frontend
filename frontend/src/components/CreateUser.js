@@ -1,43 +1,31 @@
-import React, {useState} from 'react';
-import axios from 'axios';
+import axios from "axios";
+import { React, useState } from "react";
 
-import * as yup from 'yup';
-import schema from './FormSchema';
-
-
-const initVals = {
-    fullName: '',
+const initialValues = {
     username: '',
-    password: '',
+    fullName: '',
     email: '',
-    role: '', 
+    password: '',
+    role: '',
     tos: false
-  }
-  
-  const initErrors = {
-    fullName: '',
-    username: '',
-    password: '',
-    email: '',
-    role: '', 
-    tos: ''
-  }
-
+}
 
 const CreateUser = (props) => {
-    const {change, submit, errors} = props;
-    const {username, fullName, email, password, role, tos} = props.values;
+    const [user, setUser] = useState(initialValues);
 
     const onChange = (event) => {
         const {name, value, checked, type} = event.target
-        const newVal = type === 'checkbox' ?
-        checked : value;
-        change(name, newVal);
+        const newVal = type === 'checkbox' ? checked : value;
+        setUser({...user, [name]: newVal})
     }
 
     const onSubmit = (event) => {
         event.preventDefault();
-        submit();
+
+        alert(user.fullName)
+
+        // axios.post
+        // submit();
     }
 
     return (
@@ -51,7 +39,7 @@ const CreateUser = (props) => {
                 <input
                 type='text'
                 name='fullName'
-                value={fullName}
+                value={user.fullName}
                 onChange={onChange}
                   
                   
@@ -61,8 +49,8 @@ const CreateUser = (props) => {
             <label>Username:
                 <input
                 type='text'
-                name='name'
-                value={username}
+                name='username'
+                value={user.username}
                 onChange={onChange}
                   
                   
@@ -73,7 +61,7 @@ const CreateUser = (props) => {
                 <input
                 type='email'
                 name='email'
-                value={email}
+                value={user.email}
                 onChange={onChange}
                   
                   
@@ -84,7 +72,7 @@ const CreateUser = (props) => {
                 <input
                 type='password'
                 name='password'
-                value={password}
+                value={user.password}
                 onChange={onChange}
                     
                     
@@ -95,7 +83,7 @@ const CreateUser = (props) => {
                 <input
                 type='text' 
                 name='role'
-                value={role}
+                value={user.role}
                 onChange={onChange}
                     
                     
@@ -106,7 +94,7 @@ const CreateUser = (props) => {
                 <input
                 type='checkbox'
                 name='tos'
-                checked={tos}
+                checked={user.tos}
                 onChange={onChange}
                     
                     
@@ -121,53 +109,51 @@ const CreateUser = (props) => {
     );
 }
 
-const ImplementCreateUser = () => {
-    const[formValues, setFormValues] = useState(initVals);
-    const [formErrors, setFormErrors] = useState(initErrors);
-    const [users, setUsers] = useState([]);
+// const ImplementCreateUser = () => {
+//     const[formValues, setFormValues] = useState(initVals);
+//     const [formErrors, setFormErrors] = useState(initErrors);
+//     const [users, setUsers] = useState([]);
 
-    const handleSubmit = () => {
-        axios.post('https://african-marketplace-dec-2021.herokuapp.com/api/auth/register', formValues)
-        .then(r => {
-          setUsers([r.data, ...users])
-        })
-        .catch(err => console.error(err))
-        .finally(()=> setFormValues(initVals))
-      }
+//     const handleSubmit = () => {
+//         axios.post('https://african-marketplace-dec-2021.herokuapp.com/api/auth/register', formValues)
+//         .then(r => {
+//           setUsers([r.data, ...users])
+//         })
+//         .catch(err => console.error(err))
+//         .finally(()=> setFormValues(initVals))
+//       }
 
-      const validate = (name, value) => {
-        yup.reach(schema, name)
-        .validate(value)
-        .then(() => setFormErrors({...formErrors, [name]: ''}))
-        .catch(err => setFormErrors({...formErrors, [name]: err.errors[0] }))
-      }
+//       const validate = (name, value) => {
+//         yup.reach(schema, name)
+//         .validate(value)
+//         .then(() => setFormErrors({...formErrors, [name]: ''}))
+//         .catch(err => setFormErrors({...formErrors, [name]: err.errors[0] }))
+//       }
     
-      const handleChange = (name, value) => {
-        validate(name, value);
-        setFormValues({...formValues, [name]: value})
-      }
+//       const handleChange = (name, value) => {
+//         validate(name, value);
+//         setFormValues({...formValues, [name]: value})
+//       }
 
-    return (
-        <div className='implement-form'>
-            <CreateUser 
-            values={formValues} 
-            change={handleChange} 
-            errors={formErrors} 
-            submit={handleSubmit}
-            />
+//     return (
+//         <div className='implement-form'>
+//             <CreateUser 
+//             values={formValues} 
+//             change={handleChange} 
+//             errors={formErrors} 
+//             submit={handleSubmit}
+//             />
 
-            {users.map(user => (
-            <div key={user.id}>
-            {console.log(user)}
-            <p>{user.createdAt}</p>
-            <p>{user.username}</p>
-            <p>{user.email}</p>
-            </div>
-    ))}
-        </div>
-    );
-}
+//             {users.map(user => (
+//             <div key={user.id}>
+//             {console.log(user)}
+//             <p>{user.createdAt}</p>
+//             <p>{user.username}</p>
+//             <p>{user.email}</p>
+//             </div>
+//     ))}
+//         </div>
+//     );
+// }
 
- 
-export {ImplementCreateUser}
 export default CreateUser;
