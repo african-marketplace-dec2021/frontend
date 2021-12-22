@@ -93,7 +93,7 @@ const CreateUser = (props) => {
             <input type ='submit' value='Register User'/>
     
             {/*<button id='registerButton'>Submit</button>*/}
-
+            </form>
         </div>
     )
 }
