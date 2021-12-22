@@ -7,25 +7,25 @@ function CreateUser () {
             {/* dont forget submit button */}
             <h2> Register a new user!</h2>
 
-            <label>Full Name
+            <label>Username
                 <input
-                //   value={values.fullName}
+                //   value={values.username}
                 //   onChange={onChange}
-                  name='fullname'
+                  name='name'
                   type='text'
                 />
             </label>
 
-            <label>Email
+            <label>Password:
                 <input
-                    // value={values.email}
+                    // value={values.password}
                     // onChange={onChange}
-                    name='email'
-                    type='email'
+                    name='password'
+                    type='password'
                 />
             </label>
 
-            <label>Username
+            <label>Role:
                 <input
                     // value={values.email}
                     // onChange={onChange}
@@ -33,33 +33,6 @@ function CreateUser () {
                     type='text'
                 />
             </label>
-
-            <label>Password
-                <input
-                    // value={values.email}
-                    // onChange={onChange}
-                    name='password'
-                    type='password'
-                />
-            </label>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <button id='registerButton'>Register</button>
         </form>
     )
