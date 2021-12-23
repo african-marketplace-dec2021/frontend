@@ -37,6 +37,11 @@ const StyledApp = styled.div`
     &:hover {
       transform: scale(1.1);
     }
+
+    &:disabled {
+      background-color: grey;
+      transform: none;
+    }
   }
 
   #login {
