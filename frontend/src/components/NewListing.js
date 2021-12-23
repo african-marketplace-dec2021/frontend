@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import formSchema from './FormSchema';
+import NewListingFormSchema from './NewListingFormSchema';
 import * as yup from 'yup';
 import styled from "styled-components";
 
@@ -60,7 +60,7 @@ const postNewListing = newListing => {
 }
 
 const validate = (name, value) => {
-    yup.reach(formSchema, name)
+    yup.reach(NewListingFormSchema, name)
       .validate(value)
       .then(() => setFormErrors({ ...formErrors, [name]: '' }))
       .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
