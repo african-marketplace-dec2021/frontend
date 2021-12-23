@@ -3,7 +3,7 @@ import React from 'react';
 import { Route, Switch, Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-//Components
+
 import PrivateRoute from './components/PrivateRoute';
 import Home from './components/Home';
 import Listings from './components/Listings';
@@ -12,12 +12,13 @@ import Logout from './components/Logout';
 import NewListing from './components/NewListing';
 import CreateUser from './components/CreateUser';
 
+
 const StyledApp = styled.div`
   background-color: #F7DC6F ;
   color: #145A32;
   font-family: Papyrus, Fantasy; 
-  font-weight: bold; 
-  margin-top: 1%;
+  font-weight: bold;
+  
 
   h1 {
     font-size: 4rem;
@@ -29,7 +30,6 @@ const StyledApp = styled.div`
     color: #F7DC6F;
     font-family: Papyrus, Fantasy;
     border-color: #145A32;
-    /* padding: 6%; */
     width: 7rem;
     margin-left: 10px;
     font-weight: bold;
@@ -46,6 +46,8 @@ const StyledApp = styled.div`
   .nav-links{
     display: flex;
     justify-content: center;
+    margin-bottom: 2%;
+    margin-top: -2%;
   }
   `
 
@@ -55,12 +57,12 @@ function App() {
   return (
     <StyledApp className='App'>
       <nav>
-        <h1>African Marketplace</h1>
+        <h1>Sauti Africa</h1>
         <div className='nav-links'>
           <Link to='/'><button>Home</button></Link>
           {isLoggedIn && <Link to='/listings'><button>Listings</button></Link>}
-          {!isLoggedIn && <Link to='/login'><button>Login page</button></Link>}
-          {isLoggedIn && <Link to='/logout'><button>Logout page</button></Link>}
+          {!isLoggedIn && <Link to='/login'><button>Login</button></Link>}
+          {isLoggedIn && <Link to='/logout'><button>Logout</button></Link>}
         </div>
       </nav>
 
