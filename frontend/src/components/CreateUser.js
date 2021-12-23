@@ -1,6 +1,6 @@
 import axios from "axios";
 import { React, useState, useEffect } from "react";
-import FormSchema from "./FormSchema";
+import CreateUserFormSchema from "./CreateUserFormSchema";
 import * as yup from "yup";
 import styled from "styled-components";
 
@@ -108,14 +108,14 @@ const CreateUser = (props) => {
 
   const validate = (name, value) => {
     yup
-      .reach(FormSchema, name)
+      .reach(CreateUserFormSchema, name)
       .validate(value)
       .then(() => setFormErrors({ ...formErrors, [name]: "" }))
       .catch((err) => setFormErrors({ ...formErrors, [name]: err.errors[0] }));
   };
 
   useEffect(() => {
-    FormSchema.isValid(user).then((valid) => {
+    CreateUserFormSchema.isValid(user).then((valid) => {
       setDisabled(!valid);
     });
   }, [user]);
