@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from 'axios';
 import formSchema from './FormSchema';
 import * as yup from 'yup';
@@ -50,23 +50,15 @@ function NewListing () {
     const [formValues, setFormValues] = useState(initialFormValues)
     const [formErrors, setFormErrors] = useState(initialFormErrors)
 
-const getListings = () => {
-    axios.get('https://african-marketplace-dec-2021.herokuapp.com/api/products/')
-        .then(resp => {
-            setListing(resp.data);
-        }).catch(err => console.log('error'))
-}
 
 const postNewListing = newListing => {
     axios.post('https://african-marketplace-dec-2021.herokuapp.com/api/products/', newListing)
         .then(resp => {
             setFormValues([resp.data, ...listing ])
-            console.log('this is resp', resp)
         }).catch(err => console.log(err.response.data.message))
         .finally(() => setFormValues(initialFormValues))
 }
 
-                ///validate here///
 const validate = (name, value) => {
     yup.reach(formSchema, name)
       .validate(value)
@@ -90,7 +82,6 @@ const formSubmit = () => {
         location: formValues.location,
         category_id: Number(formValues.category)
     }
-    console.log(newListing);
   postNewListing(newListing);
 }
 const onSubmit = evt => {
@@ -101,12 +92,7 @@ const onSubmit = evt => {
 const onChange = evt => {
     const {name, value } = evt.target
     inputChange(name, value)
-    console.log(value)
 }
-
-useEffect(() => {
-    getListings()
-}, [])
 
 return (
       <form onSubmit={onSubmit}>
@@ -141,8 +127,6 @@ return (
           <input
             name='price'
             type='number'
-            placeholder='ex: 1.00'
-            step='0.01'
             value={formValues.price}
             onChange={onChange}
           />
@@ -192,7 +176,6 @@ return (
           <div>{formErrors.category}</div>
         </div>
         </StylishErr>
-        {/* <button>Submit</button> */}
 
       </form>
     )
