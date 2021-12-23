@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import NewListingFormSchema from './NewListingFormSchema';
 import * as yup from 'yup';
@@ -42,13 +42,14 @@ const initialFormErrors = {
     category: '',
 }
 const initialListing=[]
-
+const initialDisabled = true
 
 function NewListing () {
 
     const [listing, setListing] = useState(initialListing)
     const [formValues, setFormValues] = useState(initialFormValues)
     const [formErrors, setFormErrors] = useState(initialFormErrors)
+    const [disabled, setDisabled] = useState(initialDisabled)
 
 
 const postNewListing = newListing => {
@@ -93,6 +94,10 @@ const onChange = evt => {
     const {name, value } = evt.target
     inputChange(name, value)
 }
+
+useEffect(() => {
+  NewListingFormSchema.isValid(formValues).then(valid => setDisabled(!valid))
+}, [formValues])
 
 return (
       <form onSubmit={onSubmit}>
@@ -166,7 +171,7 @@ return (
           </select>
         </label>
         </StylishCat>
-        <button>Submit</button>
+        <button disabled={disabled}>Submit</button>
         <StylishErr>
         <div className='errors'>
           <div>{formErrors.name}</div>
