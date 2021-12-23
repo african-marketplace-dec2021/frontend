@@ -16,9 +16,7 @@ const formSchema = yup.object().shape({
     .min(5, "Username must be at least 5 characters!"),
   role: yup
     .string()
-    .required('Role is required!')
-    .trim()
-    .min(5, "Role must be at least 5 characters!"),
+    .oneOf(['buyer','seller'], 'You must select a role!'),
   password: yup
     .string()
     .required('Password is required!')
