@@ -59,17 +59,15 @@ const StyledApp = styled.div`
 
 function App() {
   const isLoggedIn = localStorage.getItem("token")
-    const [toggleHome, setToggleHome] = useState(false);
   return (
     <StyledApp className='App'>
       <nav>
         <h1>Sauti Africa</h1>
         <div className='nav-links'>
-          {!isLoggedIn && <Link to='/'><button>Home</button></Link>}
-            {toggleHome && <Link to='/'><button onClick={(() => setToggleHome(!toggleHome))}>Home</button></Link>}
-          {!isLoggedIn && <Link to='/listings'><button>Listings</button></Link>}
-          {isLoggedIn && <Link to='/login'><button>Login</button></Link>}
-          {!isLoggedIn && <Link to='/logout'><button>Logout</button></Link>}
+            {!isLoggedIn && <Link to='/'><button>Home</button></Link>}
+            {isLoggedIn && <Link to='/listings'><button>Listings</button></Link>}
+            {!isLoggedIn && <Link to='/login'><button>Login</button></Link>}
+            {isLoggedIn && <Link to='/logout'><button>Logout</button></Link>}
         </div>
       </nav>
 
