@@ -59,7 +59,7 @@ function App() {
       <nav>
         <h1>Sauti Africa</h1>
         <div className='nav-links'>
-          <Link to='/'><button>Home</button></Link>
+          {isLoggedIn && <Link to='/'><button>Home</button></Link>}
           {isLoggedIn && <Link to='/listings'><button>Listings</button></Link>}
           {!isLoggedIn && <Link to='/login'><button>Login</button></Link>}
           {isLoggedIn && <Link to='/logout'><button>Logout</button></Link>}
