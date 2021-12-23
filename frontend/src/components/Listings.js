@@ -74,10 +74,16 @@ function Listings (){
                         <h3>Item description:</h3>
                         <h4>{listing.description}</h4>
 
+                        <h3>Category:</h3>
+                        <h4>{listing.category_id}</h4>
+
                     </StyledBox>
                     <StyledPrice>
                         <h3>Item price:</h3>
                         <h4>${listing.price}</h4>
+
+                        <h3>Location:</h3>
+                        <h4>{listing.location}</h4>
                     </StyledPrice>
                     </StyledTop>
 
