@@ -178,6 +178,7 @@ const CreateUser = (props) => {
         <label>
           Role:
           <select value={user.role} onChange={onChange} name="role">
+            <option value=''>-Choose Role</option>
             <option value="buyer">Buyer</option>
             <option value="seller">Seller</option>
           </select>
