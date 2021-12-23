@@ -39,6 +39,9 @@ const StyledListing = styled.div`
     background-color: #ffffff;
     border-radius: 25px;
 `
+const RegButton = styled.button`
+    padding: 1%;
+`
 
 function Listings (){
 
@@ -57,7 +60,7 @@ function Listings (){
     }
   return (
     <div>
-      <Link to='/newlisting'> Add new listing </Link>
+      <Link to='/newlisting'><RegButton>Add new listing</RegButton></Link>
         <StyledListing>
         {
             listings.map(listing => {

@@ -2,6 +2,29 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import formSchema from './FormSchema';
 import * as yup from 'yup';
+import styled from "styled-components";
+
+const StylishItem = styled.div`
+  margin-bottom: 10px;
+`
+const StylishDes = styled.div`
+  margin-bottom: 10px;
+`
+const StylishPrice = styled.div`
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+`
+const StylishLocation = styled.div`
+  margin-bottom: 10px;
+`
+const StylishCat = styled.div`
+  margin-bottom: 10px;
+`
+const StylishErr = styled.div`
+  margin-top: 15px;
+  color: #C0392B;
+`
 
 const initialFormValues = {
     name: '',
@@ -91,7 +114,8 @@ return (
           <h2>Create a new listing</h2>
         </div>
         
-        <label>Item
+        <StylishItem>
+        <label>Item:
           <input
             name='name'
             type='text'
@@ -99,8 +123,10 @@ return (
             onChange={onChange}
           />
         </label>
+        </StylishItem>
 
-        <label>Description
+        <StylishDes>
+        <label>Description:
           <input
             name='description'
             type='text'
@@ -108,8 +134,10 @@ return (
             onChange={onChange}
           />
         </label>
+        </StylishDes>
 
-        <label>Price
+        <StylishPrice>
+        <label>Price:
           <input
             name='price'
             type='number'
@@ -119,8 +147,10 @@ return (
             onChange={onChange}
           />
         </label>
+        </StylishPrice>
 
-        <label>Location
+        <StylishLocation>
+        <label>Location:
           <select
             name='location'
             value={formValues.location}
@@ -134,8 +164,10 @@ return (
             <option value='Location 5'>Location 5</option>
           </select>
         </label>
+        </StylishLocation>
 
-        <label>Category
+        <StylishCat>
+        <label>Category:
           <select
             name='category'
             value={formValues.category_id}
@@ -149,7 +181,9 @@ return (
             <option value='5'>category 5</option>
           </select>
         </label>
-
+        </StylishCat>
+        <button>Submit</button>
+        <StylishErr>
         <div className='errors'>
           <div>{formErrors.name}</div>
           <div>{formErrors.description}</div>
@@ -157,7 +191,8 @@ return (
           <div>{formErrors.location}</div>
           <div>{formErrors.category}</div>
         </div>
-        <button>Submit</button>
+        </StylishErr>
+        {/* <button>Submit</button> */}
 
       </form>
     )

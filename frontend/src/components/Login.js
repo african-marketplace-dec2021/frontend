@@ -11,8 +11,15 @@ const StyledStuff = styled.div`
     flex-wrap: wrap;
     margin-top: 1%;
     margin-bottom: 2%;
-
 `
+const StylishUsername = styled.div`
+    margin-bottom: 20px;
+`
+
+const StylishPassword = styled.div`
+    margin-bottom: 20px;
+`
+
 
 const Login = () => {
 
@@ -50,6 +57,7 @@ const Login = () => {
         <div>
             <form onSubmit={handleLogin}>
                 <StyledStuff>
+                <StylishUsername>
                 <label>Username: </label>
                     <input
                         type="text"
@@ -58,6 +66,8 @@ const Login = () => {
                         onChange={handleChange}
                         placeholder="Enter a username"
                     />
+                </StylishUsername>
+                <StylishPassword>
                     <label>Password: </label>
                         <input
                             type="password"
@@ -66,10 +76,11 @@ const Login = () => {
                             onChange={handleChange}
                             placeholder="Enter a password"
                         />
+                </StylishPassword>
                         <button id='login'>Log in</button>
                     </StyledStuff>
             </form>
-            <h2>New Seller?</h2> 
+            <h2>New User?</h2> 
             <Link to='/createuser'><button>Create a new account</button></Link>
         </div>
     );

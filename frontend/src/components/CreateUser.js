@@ -4,15 +4,41 @@ import FormSchema from "./FormSchema";
 import * as yup from "yup";
 import styled from "styled-components";
 
-const StyledRegister = styled.div`
+
+const StylishName = styled.div`
+  margin-bottom: 10px;
+`
+const StylishUsername = styled.div`
+  margin-bottom: 10px;
+`
+const StylishEmail = styled.div`
+  margin-bottom: 10px;
   display: flex;
-  align-content: center;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin-top: 1%;
-  margin-bottom: 2%;
-`;
+  justify-content: center;
+`
+const StylishPass = styled.div`
+  margin-bottom: 10px;
+`
+const StylishRole = styled.div`
+  margin-bottom: 10px;
+`
+const StylishTos = styled.div`
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+`
+const StylishContainer = styled.div`
+  display:flex;
+  justify-content: center;
+`
+const StylishErrors = styled.div`
+  margin-top: 15px;
+  color: #C0392B;
+`
+
+
+
+
 
 const initialValues = {
   username: "",
@@ -95,9 +121,12 @@ const CreateUser = (props) => {
   }, [user]);
 
   return (
+    <StylishContainer>
     <div className="form-container">
       <h2>Register</h2>
       <form onSubmit={onSubmit}>
+        
+        <StylishName>
         <label>
           Full Name:
           <input
@@ -107,7 +136,9 @@ const CreateUser = (props) => {
             onChange={onChange}
           />
         </label>
-
+        </StylishName>
+        
+        <StylishUsername>
         <label>
           Username:
           <input
@@ -117,7 +148,9 @@ const CreateUser = (props) => {
             onChange={onChange}
           />
         </label>
-
+        </StylishUsername>
+        
+        <StylishEmail>
         <label>
           Email:
           <input
@@ -127,7 +160,9 @@ const CreateUser = (props) => {
             onChange={onChange}
           />
         </label>
+        </StylishEmail>
 
+        <StylishPass>
         <label>
           Password:
           <input
@@ -137,22 +172,19 @@ const CreateUser = (props) => {
             onChange={onChange}
           />
         </label>
+        </StylishPass>
 
+        <StylishRole>
         <label>
           Role:
-          {/* <input
-            type="text"
-            name="role"
-            value={user.role}
-            onChange={onChange}
-          /> */}
           <select value={user.role} onChange={onChange} name="role">
-            {/* <option value='0'></option> */}
             <option value="buyer">Buyer</option>
             <option value="seller">Seller</option>
           </select>
         </label>
+        </StylishRole>
 
+        <StylishTos>
         <label>
           Terms of Service:
           <input
@@ -162,21 +194,25 @@ const CreateUser = (props) => {
             onChange={onChange}
           />
         </label>
+        </StylishTos>
 
         <button id="registerButton" disabled={disabled}>
           Register
         </button>
-
+      
+      <StylishErrors>
         <div id="errors">
-          {formErrors.fullName}
-          {formErrors.username}
-          {formErrors.email}
-          {formErrors.password}
-          {formErrors.role}
-          {formErrors.tos}
+          {formErrors.fullName}<br/>
+          {formErrors.username}<br/>
+          {formErrors.email}<br/>
+          {formErrors.password}<br/>
+          {formErrors.role}<br/>
+          {formErrors.tos}<br/>
         </div>
+      </StylishErrors>
       </form>
     </div>
+    </StylishContainer>
   );
 };
 
