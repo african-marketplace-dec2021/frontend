@@ -5,14 +5,14 @@ import * as yup from "yup";
 import styled from "styled-components";
 
 const StyledRegister = styled.div`
-    display: flex;
-    align-content: center;
-    align-items:center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin-top: 1%;
-    margin-bottom: 2%;  
-`
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 1%;
+  margin-bottom: 2%;
+`;
 
 const initialValues = {
   username: "",
@@ -24,12 +24,12 @@ const initialValues = {
 };
 
 const initialFormErrors = {
-    username: "",
-    fullName: "",
-    email: "",
-    password: "",
-    role: "",
-    tos: '',
+  username: "",
+  fullName: "",
+  email: "",
+  password: "",
+  role: "",
+  tos: "",
 };
 
 const initialDisabled = true;
@@ -48,19 +48,36 @@ const CreateUser = (props) => {
     const newVal = type === "checkbox" ? checked : value;
     validate(name, newVal);
     updateForm(name, newVal);
+    // console.log(value);
+    // console.log(newVal);
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
+    const userData = {
+      username: user.username,
+      password: user.password,
+      role: user.role,
+    };
+
     axios
       .post(
-        "enter an api here",
-        user
+        "https://african-marketplace-dec-2021.herokuapp.com/api/auth/register/",
+        userData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       )
+      // console.log('user', user)
       .then((res) => {
+        // console.log('user', user)
+        console.log(res);
         setUser(initialValues);
+        // go to home ??
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error.toJSON()));
   };
 
   const validate = (name, value) => {
@@ -72,10 +89,10 @@ const CreateUser = (props) => {
   };
 
   useEffect(() => {
-    FormSchema.isValid(user).then(valid => {
-      setDisabled(!valid)
-    })
-  }, [user])
+    FormSchema.isValid(user).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [user]);
 
   return (
     <div className="form-container">
@@ -120,15 +137,20 @@ const CreateUser = (props) => {
             onChange={onChange}
           />
         </label>
-        
+
         <label>
           Role:
-          <input
+          {/* <input
             type="text"
             name="role"
             value={user.role}
             onChange={onChange}
-          />
+          /> */}
+          <select value={user.role} onChange={onChange} name="role">
+            {/* <option value='0'></option> */}
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
+          </select>
         </label>
 
         <label>
@@ -141,15 +163,17 @@ const CreateUser = (props) => {
           />
         </label>
 
-        <button id='registerButton' disabled={disabled}>Register</button>
+        <button id="registerButton" disabled={disabled}>
+          Register
+        </button>
 
         <div id="errors">
-            {formErrors.fullName}
-            {formErrors.username}
-            {formErrors.email}
-            {formErrors.password}
-            {formErrors.role}
-            {formErrors.tos}
+          {formErrors.fullName}
+          {formErrors.username}
+          {formErrors.email}
+          {formErrors.password}
+          {formErrors.role}
+          {formErrors.tos}
         </div>
       </form>
     </div>
