@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import formSchema from './FormSchema';
+import * as yup from 'yup';
 
 const initialFormValues = {
     name: '',
@@ -37,20 +39,20 @@ const postNewListing = newListing => {
         .then(resp => {
             setFormValues([resp.data, ...listing ])
             console.log('this is resp', resp)
-        }).catch(err => console.log(err.toJSON()))
+        }).catch(err => console.log(err.response.data.message))
         .finally(() => setFormValues(initialFormValues))
 }
 
                 ///validate here///
-// const validate = (name, value) => {
-//     yup.reach(schema, name)
-//       .validate(value)
-//       .then(() => setFormErrors({ ...formErrors, [name]: '' }))
-//       .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
-//   }
+const validate = (name, value) => {
+    yup.reach(formSchema, name)
+      .validate(value)
+      .then(() => setFormErrors({ ...formErrors, [name]: '' }))
+      .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
+  }
 
 const inputChange = (name, value) => {
-    // validate(name, value);
+    validate(name, value);
     setFormValues({
       ...formValues,
       [name]: value
@@ -74,8 +76,7 @@ const onSubmit = evt => {
 }
 
 const onChange = evt => {
-    const {name, value, checked, type } = evt.target
-    // const valueToUse = type === 'checkbox' ? checked : value;
+    const {name, value } = evt.target
     inputChange(name, value)
     console.log(value)
 }
@@ -111,7 +112,9 @@ return (
         <label>Price
           <input
             name='price'
-            type='text'
+            type='number'
+            placeholder='ex: 1.00'
+            step='0.01'
             value={formValues.price}
             onChange={onChange}
           />
@@ -124,11 +127,11 @@ return (
             onChange={onChange}
           >
             <option value=''>-Choose Location</option>
-            <option value='1'>Location 1</option>
-            <option value='2'>Location 2</option>
-            <option value='3'>Location 3</option>
-            <option value='4'>Location 4</option>
-            <option value='5'>Location 5</option>
+            <option value='Location 1'>Location 1</option>
+            <option value='Location 2'>Location 2</option>
+            <option value='Location 3'>Location 3</option>
+            <option value='Location 4'>Location 4</option>
+            <option value='Location 5'>Location 5</option>
           </select>
         </label>
 
@@ -147,6 +150,13 @@ return (
           </select>
         </label>
 
+        <div className='errors'>
+          <div>{formErrors.name}</div>
+          <div>{formErrors.description}</div>
+          <div>{formErrors.price}</div>
+          <div>{formErrors.location}</div>
+          <div>{formErrors.category}</div>
+        </div>
         <button>Submit</button>
 
       </form>
