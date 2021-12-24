@@ -16,7 +16,7 @@ const NewListingFormSchema = yup.object().shape({
     .oneOf(['Location 1', 'Location 2', 'Location 3', 'Location 4', 'Location 5'], 'You must choose a location'),
   category: yup
     .string()
-    .oneOf(['1', '2', '3', '4', '5'], 'You must choose a category')
+    .min(1, 'You must choose a category')
 });
 
 export default NewListingFormSchema;

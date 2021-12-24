@@ -58,7 +58,6 @@ function NewListing () {
     axios.post('https://african-marketplace-dec-2021.herokuapp.com/api/products/', newListing)
         .then(resp => {
             setFormValues(initialFormValues)
-            setCategories([])
         }).catch(err => console.log(err.response.data.message))
 }
 
