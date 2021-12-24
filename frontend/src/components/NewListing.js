@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import axiosWithAuth from "../utils/axiosWithAuth";
 import NewListingFormSchema from './NewListingFormSchema';
 import * as yup from 'yup';
 import styled from "styled-components";
@@ -41,23 +42,23 @@ const initialFormErrors = {
     location: '',
     category: '',
 }
-const initialListing=[]
+
 const initialDisabled = true
 
 function NewListing () {
 
-    const [listing, setListing] = useState(initialListing)
+    // const [listing, setListing] = useState(initialListing)
+    const [categories, setCategories] = useState([]);
     const [formValues, setFormValues] = useState(initialFormValues)
     const [formErrors, setFormErrors] = useState(initialFormErrors)
     const [disabled, setDisabled] = useState(initialDisabled)
 
 
-const postNewListing = newListing => {
+  const postNewListing = newListing => {
     axios.post('https://african-marketplace-dec-2021.herokuapp.com/api/products/', newListing)
         .then(resp => {
-            setFormValues([resp.data, ...listing ])
+            setFormValues(initialFormValues)
         }).catch(err => console.log(err.response.data.message))
-        .finally(() => setFormValues(initialFormValues))
 }
 
 const validate = (name, value) => {
@@ -94,6 +95,15 @@ const onChange = evt => {
     const {name, value } = evt.target
     inputChange(name, value)
 }
+
+useEffect(() => {
+  axiosWithAuth()
+    .get("/categories")
+    .then((res) => {
+      // console.log(res.data)
+      setCategories(res.data);
+    });
+}, []);
 
 useEffect(() => {
   NewListingFormSchema.isValid(formValues).then(valid => setDisabled(!valid))
@@ -163,11 +173,13 @@ return (
             onChange={onChange}
           >
             <option value=''>-Choose Category</option>
-            <option value='1'>category 1</option>
-            <option value='2'>category 2</option>
-            <option value='3'>category 3</option>
-            <option value='4'>category 4</option>
-            <option value='5'>category 5</option>
+            {categories ? (
+              categories.map((item) => {
+                return <option value={`${item.id}`} key={item.id}>{item.name}</option>;
+              })
+            ) : (
+              <></>
+            )}
           </select>
         </label>
         </StylishCat>
