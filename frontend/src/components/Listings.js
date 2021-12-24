@@ -97,7 +97,7 @@ function Listings() {
             <option value="">All</option>
             {categories ? (
               categories.map((item) => {
-                return <option value={item.id} key={item.id}>{item.name}</option>;
+                return <option value={`${item.id}`} key={item.id}>{item.name}</option>;
               })
             ) : (
               <></>
